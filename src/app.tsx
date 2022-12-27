@@ -1,5 +1,6 @@
 import { MDXProvider } from "@mdx-js/react";
 import Docs from "./content/docs.js";
+import GitHub from "./components/Github.tsx";
 
 import useAsset from "ultra/hooks/use-asset.js";
 
@@ -24,6 +25,8 @@ export default function App() {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="shortcut icon" href={useAsset("/favicon.ico")} />
           <link rel="stylesheet" href={useAsset("/style.css")} />
+          <link rel="preload" as="style" href={useAsset("/uno.css")} />
+          <link rel="stylesheet" href={useAsset("/uno.css")} />
         </head>
         <body cz-shortcut-listen={"true"}>
           <main>
@@ -32,9 +35,10 @@ export default function App() {
             </h1>
             <p>
               Welcome to{" "}
-              <strong>Ultra</strong>. This is a barebones starter for your web
+              <strong className="text-yellow-500">Ultra</strong>. This is a barebones starter for your web
               app.
             </p>
+            <GitHub />
             <Docs />
             <p>
               Take{" "}

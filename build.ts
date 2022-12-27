@@ -1,5 +1,6 @@
 import { createBuilder } from "ultra/build.ts";
 import { compile } from "./mdx.ts";
+import { build } from "unocss/cli";
 
 
 const builder = createBuilder({
@@ -23,6 +24,14 @@ builder.ignore([
  */
 await compile("./content");
 builder.log.success("Compiled MDX");
+
+/**
+ * unocss
+ */
+await build({
+  patterns: ["src/**/*"],
+  outFile: "public/uno.css",
+});
 
 // deno-lint-ignore no-unused-vars
 const result = await builder.build();

@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev": "deno run -A --no-check --watch=content,src/app.tsx,server.tsx ./dev.ts",
+    "dev": "deno run -A --no-check --watch=content,src/app.tsx,src/components,src/pages,server.tsx ./dev.ts",
 
     "test": "deno test --allow-all",
     "build": "deno run -A ./build.ts",

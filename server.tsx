@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.164.0/http/server.ts";
-import { type Context, createServer } from "ultra/server.ts";
+import { type Context, createServer, createRouter } from "ultra/server.ts";
 import App from "./src/app.tsx";
 
 // Wouter
@@ -15,6 +15,9 @@ import useServerInsertedHTML from "ultra/hooks/use-server-inserted-html.js";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { useDehydrateReactQuery } from "./src/react-query/useDehydrateReactQuery.tsx";
 import { queryClient } from "./src/react-query/query-client.ts";
+
+import { getStarCount } from "./src/api/github.ts";
+
 
 const server = await createServer({
   importMapPath: import.meta.resolve("./importMap.json"),
@@ -55,9 +58,37 @@ function ServerApp({ context }: { context: Context }) {
   );
 }
 
+/**
+ * Create our API router
+ */
+const api = createRouter();
+
+/**
+ * An example API route
+ */
+api.get("/posts", (context) => {
+  return context.json([{
+    id: 1,
+    title: "Test Post",
+  }]);
+});
+
+api.get("/github", async (context) => {
+  const data = await getStarCount();
+  return context.json(data);
+});
+
+/**
+ * Mount the API router to /api
+ */
+server.route("/api", api);
+
 server.get("*", async (context) => {
   // clear query cache
   queryClient.clear();
+
+  await queryClient.prefetchQuery(getStarCount.keys(), getStarCount);
+
 
   /**
    * Render the request

@@ -6,8 +6,8 @@
     "react-dom/server": "https://esm.sh/react-dom@18.2.0/server?dev",
     "react-dom/client": "https://esm.sh/react-dom@18.2.0/client?dev",
 
-    "wouter": "https://esm.sh/wouter?external=react",
-    "wouter/static-location": "https://esm.sh/wouter/static-location?external=react",
+    "wouter": "https://esm.sh/wouter@2.9.0?external=react",
+    "wouter/static-location": "https://esm.sh/wouter@2.9.0/static-location?external=react",
 
     "@tanstack/react-query": "https://esm.sh/@tanstack/react-query@4.2.3?external=react",
 
@@ -16,6 +16,8 @@
     "ultra/": "https://deno.land/x/ultra@v2.1.7/",
 
     "@mdx-js/run": "https://esm.sh/@mdx-js/mdx@2.2.1/lib/run.js",
-    "@mdx-js/react": "https://esm.sh/@mdx-js/react@2.2.1?external=react"
+    "@mdx-js/react": "https://esm.sh/@mdx-js/react@2.2.1?external=react",
+
+    "unocss/cli": "https://esm.sh/@unocss/cli@0.48.0"
   }
 }
